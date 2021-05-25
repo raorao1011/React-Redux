@@ -1,6 +1,8 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import TextField from "@material-ui/core/TextField";
+import { createTask } from "../taskSlice";
 import styles from "./TaskForm.module.scss";
 
 type Inputs = {
@@ -8,10 +10,12 @@ type Inputs = {
 };
 
 const TaskForm: React.VFC = () => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
 
   const handleCreate = (data: Inputs) => {
     console.log(data);
+    dispatch(createTask(data.taskTitle)); //data.taskTileがaction.payloadとなる
     reset();
   };
 
