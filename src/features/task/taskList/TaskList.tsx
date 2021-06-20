@@ -5,6 +5,7 @@ import styles from "./TaskList.module.scss";
 import TaskItem from "../taskItem/TaskItem";
 
 const TaskList: React.VFC = () => {
+  //storeからtask一覧を取得
   const tasks = useSelector(selectTask);
   return (
     <div className={styles.root}>

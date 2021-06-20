@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "./components/header/Header";
 import styles from "./App.module.scss";
-import TaskForm from "./features/counter/task/taskForm/TaskForm";
-import TaskList from "./features/counter/task/taskList/TaskList";
+import TaskForm from "./features/task/taskForm/TaskForm";
+import TaskList from "./features/task/taskList/TaskList";
 
 const App: React.VFC = () => {
   return (
