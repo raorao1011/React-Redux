@@ -55,12 +55,31 @@ export const taskSlice = createSlice({
       // 今までのタスクの先頭に新しいタスクを足す
       state.tasks = [newTask, ...state.tasks];
     },
+    // タスクの編集
+    editTask: (state, action) => {
+      // state.tasksの中から指定したtaskを抜き出している
+      const task = state.tasks.find((task) => task.id === action.payload.id); //tasksは配列
+      
+      if (task) {
+        task.title = action.payload.title;
+      }
+    },
+    // どのタスクを選択しているか
+    selectTask: (state, action) => {
+      state.selectedTask = action.payload;
+    },
+    // Modalを開くか閉じるかのフラグ
+    handleModalOpen: (state, action) => {
+      state.isModalOpne = action.payload;
+    },
   },
 });
 
-export const { createTask } = taskSlice.actions; //actions reducersの中で定義したロジック　今回はcreateTask
-export const selectTask = (state: RootState): TaskState["tasks"] => state.task.tasks; //stateの中のtask(name)のなかのtasks
-//useSelector(selectTask)これで、tasksのstateがゲットできる
+export const { createTask, editTask, selectTask, handleModalOpen } = taskSlice.actions; //actions reducersの中で定義したロジック 今回はcreateTask
+
+export const selectTasks = (state: RootState): TaskState["tasks"] => state.task.tasks; //stateの中のtask(name)のなかのtasks
+export const selectIsModalOpen = (state: RootState): TaskState["isModalOpne"] => state.task.isModalOpne;
+export const selectSelectedTask = (state: RootState): TaskState["selectedTask"] => state.task.selectedTask;
 
 export default taskSlice.reducer;
 //storeの中のtaskReducerになる
